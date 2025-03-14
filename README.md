@@ -1,2 +1,17 @@
-# vlsi_club_mx
-Tools tutorial
+# VSLI Club MX
+
+
+
+
+## Introduction
+
+
+
+## Participants
+
+- Ciro Bermudez
+- Luis Namigtle
+- Alejandro Silva
+- Victor Carbajal
+
+
