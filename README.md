@@ -22,5 +22,6 @@ The size of the counter varies with the clock frequency and the desired stable t
 - Luis Namigtle
 - Alejandro Silva
 - Victor Carbajal
+- Alan Tavira
 
 
