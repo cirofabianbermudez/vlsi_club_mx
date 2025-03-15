@@ -1,0 +1,108 @@
+##=============================================================================
+## [Filename]       Makefile.vcs
+## [Project]        debouncer_ip
+## [Author]         Ciro Bermudez - cirofabian.bermudez@gmail.com
+## [Language]       GNU Makefile
+## [Created]        March 2025
+## [Modified]       -
+## [Description]    Makefile tor testing
+## [Notes]          -
+## [Status]         devel
+## [Revisions]      -
+##=============================================================================
+
+# ===============================  VARIABLES  =================================
+
+## Miscellaneous variables
+CUR_DATE := $(shell date +%Y-%m-%d_%H-%M-%S)
+
+# Directories
+GIT_DIR := $(shell git rev-parse --show-toplevel)
+RUN_DIR := $(GIT_DIR)/work
+RTL_DIR := $(GIT_DIR)/hw/rtl
+TB_DIR  := $(GIT_DIR)/hw/tb
+
+# Files
+RTL_FILES := $(shell find $(RTL_DIR) -name "*.sv" -or -name "*.v")
+TB_FILES  := $(shell find $(TB_DIR) -name "*.sv" -or -name "*.v")
+
+FILES = $(TB_FILES) $(RTL_FILES)
+
+# Simulation configuration
+SEED ?= 1
+
+# Synopsys VCS/SIMV options
+VCS_FLAGS = -full64 -sverilog \
+			-lca -debug_access+all -kdb \
+			-timescale=1ns/100ps $(FILES) -l comp.log \
+			-top tb \
+			-j8
+
+SIMV_FLAGS = -l simv_$(CUR_DATE).log
+
+# VERDI Configuration
+VERDI_FLAGS = -ssf novas.fsdb -dbdir simv.daidir -nologo -q
+
+# Colors
+C_RED := \033[31m
+C_GRE := \033[32m
+C_BLU := \033[34m
+C_YEL := \033[33m
+C_ORA := \033[38;5;214m
+NC    := \033[0m 
+
+# ================================  TARGETS  ==================================
+.DEFAULT_GOAL := all
+
+.PHONY: all
+all: help
+#______________________________________________________________________________
+
+.PHONY: vars
+vars: ## Print Makefile variables
+	@echo ""
+	@echo -e "$(C_ORA)Miscellaneous variables...$(NC)"
+	@echo "CUR_DATE    = $(CUR_DATE)"
+	@echo ""
+	@echo -e "$(C_ORA)Directory variables...$(NC)"
+	@echo "GIT_DIR     = $(GIT_DIR)"
+	@echo "RUN_DIR     = $(RUN_DIR)"
+	@echo "RTL_DIR     = $(RTL_DIR)"
+	@echo "TB_DIR      = $(TB_DIR)"
+	@echo ""
+	@echo -e "$(C_ORA)Files variables...$(NC)"
+	@echo "RTL_FILES     = $(RTL_FILES)"
+	@echo "TB_FILES      = $(TB_FILES)"
+	@echo ""
+#______________________________________________________________________________
+
+.PHONY: compile
+compile: ## Run VCS compilation
+	@echo -e "$(C_ORA)Compile with VCS$(NC)"
+	@mkdir -p $(RUN_DIR)/sim
+	cd $(RUN_DIR)/sim && vcs $(VCS_FLAGS)
+#______________________________________________________________________________
+
+.PHONY: sim
+sim: ## Run simv simulation using SEED
+	@echo -e "$(C_ORA)Running simulation SEED=$(SEED)$(NC)"
+	@mkdir -p $(RUN_DIR)/sim
+	cd $(RUN_DIR)/sim && ./simv +ntb_random_seed=${SEED} $(SIMV_FLAGS)
+#______________________________________________________________________________
+
+.PHONY: clean
+clean: ## Remove all simulation files
+	@echo -e "$(C_ORA)Removing all simulation files$(NC)"
+	rm -rf $(RUN_DIR)
+
+#______________________________________________________________________________
+.PHONY: help
+help: ## Display help message
+	@echo ""
+	@echo "======================================================================"
+	@echo ""
+	@echo "Usage: make <target> <variables>"
+	@echo ""
+	@echo "--------------------------- Targets ----------------------------------"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "- make \033[36m%-15s\033[0m %s\n", $$1, $$2}'
+	@echo ""
