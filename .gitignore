@@ -5,4 +5,5 @@ work/
 *.o
 *.exe
 *.pdf
+Makefile
 
