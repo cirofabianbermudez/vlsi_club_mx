@@ -22,23 +22,35 @@ RUN_DIR := $(GIT_DIR)/work
 RTL_DIR := $(GIT_DIR)/hw/rtl
 TB_DIR  := $(GIT_DIR)/hw/tb
 
+# Simulation configuration
+SEED ?= 1
+
+# Simulation mode
+GUI_MODE ?= false
+RUN_FLAGS ?=
+
+# ================================  CONTROL  ==================================
+
+# Simulation mode switch
+ifeq ($(GUI_MODE),true)
+	RUN_FLAGS += -gui=verdi &
+endif
+
+# ==============================  TOOLS SETUP  ================================
+
 # Files
 RTL_FILES := $(shell find $(RTL_DIR) -name "*.sv" -or -name "*.v")
 TB_FILES  := $(shell find $(TB_DIR) -name "*.sv" -or -name "*.v")
-
 FILES = $(TB_FILES) $(RTL_FILES)
-
-# Simulation configuration
-SEED ?= 1
 
 # Synopsys VCS/SIMV options
 VCS_FLAGS = -full64 -sverilog \
 			-lca -debug_access+all -kdb \
-			-timescale=1ns/100ps $(FILES) -l comp.log \
+			-timescale=1ns/100ps $(FILES) -l comp_$(CUR_DATE).log \
 			-top tb \
 			-j8
 
-SIMV_FLAGS = -l simv_$(CUR_DATE).log
+SIMV_FLAGS = -l simv_$(CUR_DATE).log $(RUN_FLAGS)
 
 # VERDI Configuration
 VERDI_FLAGS = -ssf novas.fsdb -dbdir simv.daidir -nologo -q
@@ -69,6 +81,8 @@ vars: ## Print Makefile variables
 	@echo "RUN_DIR     = $(RUN_DIR)"
 	@echo "RTL_DIR     = $(RTL_DIR)"
 	@echo "TB_DIR      = $(TB_DIR)"
+	@echo "GUI_MODE    = $(GUI_MODE)"
+	@echo "RUN_FLAGS   = $(RUN_FLAGS)"
 	@echo ""
 	@echo -e "$(C_ORA)Files variables...$(NC)"
 	@echo "RTL_FILES     = $(RTL_FILES)"
@@ -90,12 +104,18 @@ sim: ## Run simv simulation using SEED
 	cd $(RUN_DIR)/sim && ./simv +ntb_random_seed=${SEED} $(SIMV_FLAGS)
 #______________________________________________________________________________
 
+.PHONY: verdi
+verdi: ## Opens Verdi GUI
+	@echo -e "$(C_ORA)Openning Verdi$(NC)"
+	cd $(RUN_DIR)/sim && verdi $(VERDI_FLAGS) &
+#______________________________________________________________________________
+
 .PHONY: clean
 clean: ## Remove all simulation files
 	@echo -e "$(C_ORA)Removing all simulation files$(NC)"
 	rm -rf $(RUN_DIR)
-
 #______________________________________________________________________________
+
 .PHONY: help
 help: ## Display help message
 	@echo ""
@@ -105,4 +125,14 @@ help: ## Display help message
 	@echo ""
 	@echo "--------------------------- Targets ----------------------------------"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "- make \033[36m%-15s\033[0m %s\n", $$1, $$2}'
+	@echo "--------------------------- Variables -------------------------------"
+	@echo ""
+	@echo "  SEED              : Random seed used, must be an integer > 0"
+	@echo "  GUI_MODE          : Enables to run the sim in gui mode [true|false]"
+	@echo ""
+	@echo "-------------------------- Variable Values --------------------------"
+	@echo "  SEED              : $(SEED)"
+	@echo "  GUI_MODE          : $(GUI_MODE)"
+	@echo ""
+	@echo "======================================================================"
 	@echo ""
