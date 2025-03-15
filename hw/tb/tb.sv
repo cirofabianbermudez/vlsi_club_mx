@@ -3,7 +3,7 @@
 module tb;
 
   // Clock signal
-  parameter time ClkPeriod = 10ns;
+  localparam time ClkPeriod = 10ns;
   logic clk_i = 0;
   always #(ClkPeriod / 2) clk_i = ~clk_i;
 
@@ -27,7 +27,7 @@ module tb;
 
   initial begin
     $timeformat(-9, 1, "ns", 10);
-    $fsdbDumpvars;                // Synopsys VCS
+    $fsdbDumpvars;  // Synopsys VCS
   end
 
 endmodule
