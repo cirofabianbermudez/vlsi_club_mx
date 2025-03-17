@@ -1,0 +1,10 @@
+# Directories
+work/
+fmt_log/
+
+# Files
+*.o
+*.exe
+*.pdf
+Makefile
+
