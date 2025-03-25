@@ -1,10 +1,12 @@
 # Directories
 work/
 fmt_log/
+verdiLog/
 
 # Files
 *.o
 *.exe
 *.pdf
 Makefile
-
+novas.conf
+novas.rc
