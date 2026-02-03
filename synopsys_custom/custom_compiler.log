@@ -1,0 +1,42 @@
+[14:01:51.92] /o 
+              /c                                 Custom Compiler™ 
+              /c 
+              /c                 Version W-2024.09-3 for linux64 - Nov 07, 2024 
+              /c 
+              /c                     Copyright (c) 2004 - 2024 Synopsys, Inc.
+              /c    This software and the associated documentation are proprietary to Synopsys,
+              /c  Inc. This software may only be used in accordance with the terms and conditions
+              /c  of a written license agreement with Synopsys, Inc. All other use, reproduction,
+              /c    or distribution of this software is strictly prohibited.  Licensed Products
+              /c      communicate with Synopsys servers for the purpose of providing software
+              /c     updates, detecting software piracy and verifying that customers are using
+              /c     Licensed Products in conformity with the applicable License Key for such
+              /c   Licensed Products. Synopsys will use information gathered in connection with
+              /c     this process to deliver software updates and pursue software pirates and
+              /c                                    infringers.
+              /c 
+              /c  Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+              /c             Inclusivity and Diversity" (Refer to article 000036315 at
+              /c                         https://solvnetplus.synopsys.com)
+              /c 
+              /c Build  (OPT) Config 10980183 compiled on Thu Nov  7 11:43:36 2024 for AlmaLinux 8.4
+              /c Invocation: /home/EDA/CDS/SYNOPSYS/customcompiler/W-2024.09-3/linux64/platform/bin/cdesigner -loadAll true
+              /c Execution time: Tue Feb  3 14:00:57 2026
+              /c Host: sici4
+              /c Working directory: /home/sici4/Escritorio/vlsi_club_mx
+              /c 
+[14:01:54.26] /m Information: Initial loading for the PrimeSim CCK package
+[14:01:54.27] /o PrimeSim CCK initialization complete.
+[14:01:54.36] /o === CCK Interface /home/EDA/CDS/SYNOPSYS/primesim_di/W-2024.09-SP2-2/etc/auxx/cck/cckgui.tbc (Version W-2024.09-SP2 - Wed Apr 30 22:02:58 CST 2025,9758446) Loaded! ===
+[14:01:54.37] /m Information: Registering ICV PERC package...
+[14:01:54.37] /m Information: Registering PrimeSim EMIR package...
+[14:01:54.61] /r giShowFrameTabs true
+[14:01:54.61] /r giWindowId 1
+[14:01:54.61] /r giWindowGeometry 1040x800
+[14:02:11.48] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x824+1604+159
+[14:02:18.98] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x824+1448+211
+[14:02:24.70] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x731+1442+326
+[14:02:27.17] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x719+1442+338
+[14:02:45.87] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x719+1346+263
+[14:02:46.28] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x726+1346+256
+[14:02:49.05] /i db::setAttr geometry -of [gi::getFrames 1] -value 1040x726+1430+272

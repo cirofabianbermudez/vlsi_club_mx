@@ -1,0 +1,42 @@
+[13:44:56.39] /o 
+              /c                                 Custom Compiler™ 
+              /c 
+              /c                 Version W-2024.09-3 for linux64 - Nov 07, 2024 
+              /c 
+              /c                     Copyright (c) 2004 - 2024 Synopsys, Inc.
+              /c    This software and the associated documentation are proprietary to Synopsys,
+              /c  Inc. This software may only be used in accordance with the terms and conditions
+              /c  of a written license agreement with Synopsys, Inc. All other use, reproduction,
+              /c    or distribution of this software is strictly prohibited.  Licensed Products
+              /c      communicate with Synopsys servers for the purpose of providing software
+              /c     updates, detecting software piracy and verifying that customers are using
+              /c     Licensed Products in conformity with the applicable License Key for such
+              /c   Licensed Products. Synopsys will use information gathered in connection with
+              /c     this process to deliver software updates and pursue software pirates and
+              /c                                    infringers.
+              /c 
+              /c  Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+              /c             Inclusivity and Diversity" (Refer to article 000036315 at
+              /c                         https://solvnetplus.synopsys.com)
+              /c 
+              /c Build  (OPT) Config 10980183 compiled on Thu Nov  7 11:43:36 2024 for AlmaLinux 8.4
+              /c Invocation: /home/EDA/CDS/SYNOPSYS/customcompiler/W-2024.09-3/linux64/platform/bin/cdesigner -loadAll true
+              /c Execution time: Tue Feb  3 13:44:55 2026
+              /c Host: sici4
+              /c Working directory: /home/sici4/Escritorio/vlsi_club_mx
+              /c 
+[13:44:58.76] /m Information: Registering ICV PERC package...
+[13:44:58.76] /m Information: Registering PrimeSim EMIR package...
+[13:44:58.76] /m Information: Initial loading for the PrimeSim CCK package
+[13:44:58.77] /o PrimeSim CCK initialization complete.
+[13:44:58.83] /o === CCK Interface /home/EDA/CDS/SYNOPSYS/primesim_di/W-2024.09-SP2-2/etc/auxx/cck/cckgui.tbc (Version W-2024.09-SP2 - Wed Apr 30 22:02:58 CST 2025,9758446) Loaded! ===
+[13:44:59.28] /r giShowFrameTabs true
+[13:44:59.28] /r giWindowId 1
+[13:44:59.28] /r giWindowGeometry 1040x800
+[13:45:05.25] /i exit
+[13:45:05.28] /r giDialog gi::setActiveDialog [gi::getDialogs {deExitDialog} -parent [gi::getWindows 1]]
+[13:45:05.57] /r giDialog db::setAttr geometry -of [gi::getDialogs {deExitDialog} -parent [gi::getWindows 1]] -value 419x185+4950+621
+[13:45:06.78] /r giDialog gi::pressButton {ok} -in [gi::getDialogs {deExitDialog} -parent [gi::getWindows 1]]
+[13:45:09.47] /o Shutdown time: Tue Feb  3 13:45:09 2026
+[13:45:09.47] /o Elapsed session real time: 0.23 minutes
+[13:45:09.47] /o Session terminated. Log is at /home/sici4/Escritorio/vlsi_club_mx/synopsys_custom/logs/ccompiler.sici4.2026_2_3_134455_1936741.log
